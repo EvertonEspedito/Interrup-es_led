@@ -1,52 +1,53 @@
+# Interrupções com LED no Raspberry Pi Pico
 
-Configuração do Temporizador:
+Este projeto demonstra o uso de interrupções no Raspberry Pi Pico para controlar LEDs com botões físicos. Ele utiliza a biblioteca `pico/stdlib.h` e manipula GPIOs para detecção de eventos nos botões.
 
-Utiliza um temporizador para gerar interrupções em intervalos regulares.
-A cada interrupção, o código atualiza o estado da matriz de LEDs para criar a animação desejada.
-Loop Principal:
+## 📌 Funcionalidades
+- Pisca um LED vermelho para indicar funcionamento.
+- Usa interrupções para detectar pressionamentos nos botões.
+- Incrementa e decrementa um contador com os botões `BUTTON_A` e `BUTTON_B`.
+- Atualiza uma matriz de LEDs conforme o valor do contador.
 
-O loop principal do programa permanece em execução, enquanto as atualizações da matriz são gerenciadas pelas interrupções do temporizador.
-Como Executar o Projeto
-Clone o repositório:
+## 🎥 Video
+- Assistir()[]
 
-bash
-Copiar
-Editar
-git clone https://github.com/LuizEduardo-cyber/Luiz-Eduardo-CEPEDI-tarefa1-27-01.git
-Navegue até o diretório do projeto:
 
-bash
-Copiar
-Editar
-cd Luiz-Eduardo-CEPEDI-tarefa1-27-01
-Configure o ambiente de desenvolvimento:
+## 🛠️ Configuração do Hardware
+| Componente  | Pino GPIO |
+|------------|----------|
+| LED Vermelho  | 13 |
+| LED Azul  | 12 |
+| LED Verde  | 11 |
+| Botão A  | 5 |
+| Botão B  | 6 |
 
-Certifique-se de ter o SDK do Raspberry Pi Pico instalado.
-Configure as variáveis de ambiente conforme necessário.
-Compile o projeto:
+Os botões utilizam `pull-up` interno para evitar leituras flutuantes.
 
-bash
-Copiar
-Editar
-mkdir build
-cd build
-cmake ..
-make
-Carregue o firmware:
+## 📜 Como funciona o código
+1. **Inicializa os GPIOs** para LEDs e botões.
+2. **Configura interrupções** para acionar eventos ao pressionar os botões.
+3. **A função `gpio_irq_handler`** incrementa ou decrementa um contador ao pressionar os botões.
+4. **O valor do contador** é usado para modificar a matriz de LEDs.
+5. **O LED vermelho pisca** continuamente para indicar que o sistema está ativo.
 
-Conecte o Raspberry Pi Pico ao computador em modo de armazenamento USB.
-Copie o arquivo .uf2 gerado para o dispositivo.
-Execute o projeto:
+## 🚀 Como compilar e executar
+1. Instale o **Raspberry Pi Pico SDK**.
+2. Clone este repositório:
+   ```sh
+   git clone https://github.com/EvertonEspedito/Interrup-es_led.git
+   ```
+3. Compile o código usando CMake e GCC para ARM.
+4. Copie o arquivo `.uf2` gerado para o Pico.
+5. Abra um terminal para visualizar a saída com `minicom` ou `screen`.
 
-Após o carregamento, o código será executado automaticamente no Raspberry Pi Pico, controlando a matriz de LEDs conforme programado.
-Contribuição
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests. Por favor, siga as diretrizes de contribuição antes de fazer alterações.
+## 🏗️ Dependências
+- Raspberry Pi Pico SDK
+- Biblioteca `hardware/timer.h`
+- Biblioteca `pico/stdlib.h`
 
-Licença
-Este projeto está licenciado sob a [Nome da Licença]. Consulte o arquivo LICENSE para obter mais informações.
+## 📝 Licença
+Este projeto está sob a licença MIT.
 
-Contato
-Para dúvidas ou sugestões, entre em contato através do e-mail: [seu-email@example.com].
+## 📩 Contato
+Criado por **Everton Espedito**. Para dúvidas ou sugestões, entre em contato!
 
-Vídeo Demonstrativo
-Para uma demonstração visual do projeto, assista ao vídeo abaixo:
